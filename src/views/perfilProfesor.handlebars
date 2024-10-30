@@ -1,0 +1,17 @@
+<header><img src="" alt="" /><h2></h2></header>
+<main>
+  <h1>PERFIL PROFESOR</h1>
+  <div>
+    <p>Nombre: {{profesor.nombre}}</p>
+    <p>Apellido: {{profesor.apellido}}</p>
+    <div>
+
+      <h2>ALUMNOS</h2>
+      <ul>
+        {{#each alumnos}}
+          <li>{{this.nombre}} {{this.apellido}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</main>

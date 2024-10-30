@@ -1,0 +1,28 @@
+<div id="usuario_id" data-id="{{usuario._id}}">
+  <p>{{usuario.nombre}}</p>
+  <p>{{usuario.apellido}}</p>
+</div>
+{{#if isProfesor}}
+  <h2>Profesor designado</h2>
+  <div>
+    <p>Nombre: {{profesorDesignado.nombre}}</p>
+    <p>Apellido: {{profesorDesignado.apellido}}</p>
+  </div>
+{{else}}
+  <h2>Selecciona tu profesor</h2>
+  <select name="" id="profesores">
+
+    {{#each profesores}}
+      <option value="{{this._id}}">{{this.nombre}}
+        {{this.apellido}}
+        -
+        {{this.alumnos.length}}
+        alumnos</option>
+    {{/each}}
+
+  </select>
+
+  <form action=""><button id="select_profesor" type="submit">Guardar Profesor|</button></form>
+{{/if}}
+
+<script src="/js/perfilAlumno.js"></script>

@@ -1,0 +1,12 @@
+<form action="/api/session/login" method="POST">
+  <label for="email">Escribe tu correo:
+    <input type="email" name="email" id="email" /></label>
+  <label for="password">Escribe tu contraseña:
+    <input type="password" name="password" id="password" /></label>
+  <button type="submit">Entrar</button>
+  {{#if error}}
+    <p>{{error}}</p>
+  {{else}}
+    <p></p>
+  {{/if}}
+</form>
