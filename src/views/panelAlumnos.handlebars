@@ -1,0 +1,11 @@
+<div>
+  {{!En este sector se visualizan datos del alumno}}
+
+  <p id="usuario_id" data-id="{{alumno._id}}">{{alumno.nombre}}
+    {{alumno.apellido}}</p>
+  {{!Hay que agregar tres bloques de codigo uno para rutinas (en este estarán la lista de rutinas y un link que deriva a ellas), otro dietas (los mismo que las rutinas), otro progresos (con imágenes con fechas)}}
+  {{#each alumno.rutinas}}
+    <p>{{this}}</p>
+  {{/each}}
+  <a href="/api/users/perfil/profesor/{{alumno.profesor}}">Volver al perfil</a>
+</div>

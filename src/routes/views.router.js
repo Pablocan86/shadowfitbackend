@@ -1,16 +1,29 @@
 const { Router } = require("express");
-
+const viewsController = require("../controllers/views.Controller.js");
+const {
+  isAuthenticated,
+  isNotAuthenticated,
+  isNotAuthenticatedProfesor,
+} = require("../midlewars/auth.js");
 const router = Router();
 
 router.get("/chat", (req, res) => {
   res.render("chat", { title: "chat" });
 });
 
-router.get("/login", (req, res) => {
+router.get("/paginaprincipal", viewsController.home);
+
+router.get("/login", isNotAuthenticated, (req, res) => {
   res.render("login");
 });
 
-router.get("/loginprofesores", (req, res) => {
+router.get(
+  "/confeccionrutinas",
+  isAuthenticated,
+  viewsController.confeccionRutinas
+);
+
+router.get("/loginprofesores", isNotAuthenticatedProfesor, (req, res) => {
   res.render("loginProfesores");
 });
 

@@ -47,20 +47,24 @@ exports.perfilProfesor = async (req, res) => {
       let alumno = await userService.traeUnUsuario(id);
       listaAlumnos.push(alumno);
     }
-    console.log(listaAlumnos);
     res.render("perfilProfesor", { profesor: profesor, alumnos: listaAlumnos });
   } catch (error) {}
 };
 
+exports.panelAlumnos = async (req, res) => {
+  let { uid } = req.params;
+  let alumno = await userService.traeUnUsuario(uid);
+  res.render("panelAlumnos", { alumno: alumno });
+};
+
 exports.login = async (req, res) => {
-  console.log(req.user);
   if (!req.user)
     return res
       .status(400)
       .send({ status: "error", error: "Credenciales invalidas" });
   try {
     if (!req.user) return res.redirect("/log");
-    if (req.user.rol === "alumnos")
+    if (req.user.rol === "alumno") {
       req.session.user = {
         id: req.user._id,
         nombre: req.user.nombre,
@@ -72,7 +76,9 @@ exports.login = async (req, res) => {
         rutinas: req.user.rutinas,
         rol: req.user.rol,
       };
-    if (req.user.rol === "profesor")
+      return res.redirect(`/api/users/perfil/${req.session.user.id}`);
+    }
+    if (req.user.rol === "profesor") {
       req.session.user = {
         id: req.user._id,
         nombre: req.user.nombre,
@@ -83,13 +89,6 @@ exports.login = async (req, res) => {
         alumnos: req.user.alumnos,
         rol: req.user.rol,
       };
-    console.log(req.session.user);
-    if (req.session.user.rol === "alumno") {
-      //Redirect o render de página para admin
-      return res.redirect(`/api/users/perfil/${req.session.user.id}`);
-    }
-    if (req.session.user.rol === "profesor") {
-      //Redirect o render de página para admin
       return res.redirect(`/api/users/perfil/profesor/${req.session.user.id}`);
     }
     return res.send({ message: "Usted es administrador" });
@@ -136,6 +135,19 @@ exports.cargarProfesor = async (req, res) => {
     await userService.cargarAlumnos(pid, uid);
     let result = await userService.actualizaPropiedad(uid, { profesor: pid });
     return res.status(200).json({ message: "Profesor agregado correctamente" });
+  } catch (error) {
+    console.log("Entro en el catch " + error);
+  }
+};
+
+exports.cargarRutina = async (req, res) => {
+  let { uid } = req.params;
+  let { rutina } = req.body;
+  try {
+    let alumno = await userService.traeUnUsuario(uid);
+
+    await userService.cargarRutina(uid, rutina);
+    return res.status(200).json({ message: "Rutina agregada correctamente" });
   } catch (error) {
     console.log("Entro en el catch " + error);
   }

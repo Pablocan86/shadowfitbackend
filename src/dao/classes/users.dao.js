@@ -29,6 +29,12 @@ class UserManager {
     await profesor.save();
   }
 
+  async cargarRutina(uid, rutina) {
+    let alumno = await userModel.findById(uid);
+    alumno.rutinas.push(rutina);
+    await alumno.save();
+  }
+
   async traeUnUsuarioEmail(email) {
     let usuario = userModel.findOne({ email: email });
     return usuario;

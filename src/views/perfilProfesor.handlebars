@@ -5,13 +5,19 @@
     <p>Nombre: {{profesor.nombre}}</p>
     <p>Apellido: {{profesor.apellido}}</p>
     <div>
-
       <h2>ALUMNOS</h2>
       <ul>
         {{#each alumnos}}
-          <li>{{this.nombre}} {{this.apellido}}</li>
+          <li>{{this.nombre}}
+            {{this.apellido}}
+            <a href="/api/users/panelAlumno/{{this._id}}">Ir</a>
+          </li>
         {{/each}}
       </ul>
     </div>
+    <a href="/api/views/paginaprincipal">Ir a página principal</a>
+    <form action="/api/session/logout" method="post"><button
+        type="submit"
+      >Cerrar cesión</button></form>
   </div>
 </main>

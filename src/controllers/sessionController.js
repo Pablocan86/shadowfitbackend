@@ -4,6 +4,6 @@ exports.logout = async (req, res) => {
     if (err) {
       return res.status(500).json({ message: "Error al cerrar sesión" });
     }
-    res.redirect("../views/login");
+    res.redirect("../views/paginaprincipal");
   });
 };

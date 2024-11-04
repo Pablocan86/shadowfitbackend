@@ -1,11 +1,19 @@
 <div>
-  {{#if usuario}}
-    <p>Nombre: {{usuario.nombre}}</p>
-    <p>Apellido: {{usuario.apellido}}</p>
-    <form action="/api/session/logout" method="POST"><button
-        type="submit"
-      >Cerrar sesión</button></form>
+  <h1>Bienvenidos a la página principal</h1>
+  {{#if session}}
+    {{#if alumno}}
+      <p>Hola {{alumno.nombre}} {{alumno.apellido}}</p>
+      <a href="/api/users/perfil/{{alumno.id}}">Perifl</a>
+    {{/if}}
+    {{#if profesor}}
+      <p>Hola {{profesor.nombre}} {{profesor.apellido}}</p>
+      <a href="/api/views/confeccionrutinas">Crear rutina</a>
+      <a href="/api/users/perfil/profesor/{{profesor.id}}">Perifl</a>
+    {{/if}}
   {{else}}
-    <p>No existe usuario iniciado</p>
+    <div>
+      <a href="./login">Ingreso alumnos</a>
+      <a href="./loginprofesores">Ingreso profesores</a>
+    </div>
   {{/if}}
 </div>

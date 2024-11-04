@@ -89,7 +89,8 @@ const initializePassport = () => {
     let alumno = await userService.traeUnUsuario(id);
     if (profesor) {
       user = profesor;
-    } else {
+    }
+    if (alumno) {
       user = alumno;
     }
 
