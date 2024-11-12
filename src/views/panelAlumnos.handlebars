@@ -4,8 +4,10 @@
   <p id="usuario_id" data-id="{{alumno._id}}">{{alumno.nombre}}
     {{alumno.apellido}}</p>
   {{!Hay que agregar tres bloques de codigo uno para rutinas (en este estarán la lista de rutinas y un link que deriva a ellas), otro dietas (los mismo que las rutinas), otro progresos (con imágenes con fechas)}}
+  <ul>
   {{#each alumno.rutinas}}
-    <p>{{this}}</p>
+    <li><a href="/api/views/rutina/{{@index}}/{{../alumno._id}}">Rutina {{@index}}</a></li>
   {{/each}}
+  </ul>
   <a href="/api/users/perfil/profesor/{{alumno.profesor}}">Volver al perfil</a>
 </div>

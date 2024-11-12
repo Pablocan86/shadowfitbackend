@@ -2,13 +2,9 @@
   <h1>ARMADO DE RUTINAS</h1>
 </header>
 <main>
-  {{#if alumnos}}
-    <select name="" id="">
-      {{#each alumnos}}
-        <option data-id="{{this._id}}" value="">{{this.nombre}}</option>
-      {{/each}}
-    </select>
-  {{/if}}
+  <h2 id="nombreAlumno" data-id="{{alumno._id}}">ALUMNO:
+    {{alumno.apellido}}
+    {{alumno.nombre}}</h2>
 
   <section class="section_ingreso_datos">
     <div class="datos_personales">

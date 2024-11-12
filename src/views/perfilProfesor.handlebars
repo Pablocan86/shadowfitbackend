@@ -10,12 +10,15 @@
         {{#each alumnos}}
           <li>{{this.nombre}}
             {{this.apellido}}
-            <a href="/api/users/panelAlumno/{{this._id}}">Ir</a>
+            <a href="/api/users/panelAlumno/{{this._id}}">Ir</a><a
+              href="/api/views/confeccionrutinas/{{this._id}}"
+            >Crear rutina</a>
           </li>
         {{/each}}
       </ul>
     </div>
     <a href="/api/views/paginaprincipal">Ir a página principal</a>
+
     <form action="/api/session/logout" method="post"><button
         type="submit"
       >Cerrar cesión</button></form>

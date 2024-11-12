@@ -24,6 +24,11 @@
 
   <form action=""><button id="select_profesor" type="submit">Guardar Profesor|</button></form>
 {{/if}}
+<ul>
+{{#each usuario.rutinas}}
+<li><a href="/api/views/rutina/{{@index}}/{{../usuario._id}}">Rutina {{@index}}</a></li>
+{{/each}}
+</ul>
 <form action="/api/session/logout" method="post"><button type="submit">Cerrar
     cesión</button></form>
 

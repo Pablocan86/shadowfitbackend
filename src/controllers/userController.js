@@ -96,6 +96,10 @@ exports.login = async (req, res) => {
     res.status(500).send("Error al iniciar sesión");
   }
 };
+
+exports.rutina = async (req, res) => {
+  res.render("confeccionRutinas");
+};
 // exports.crearUsuario = async (req, res) => {
 //   let { nombre, apellido, email, password, cumpleanos } = req.body;
 //   try {

@@ -18,10 +18,12 @@ router.get("/login", isNotAuthenticated, (req, res) => {
 });
 
 router.get(
-  "/confeccionrutinas",
+  "/confeccionrutinas/:uid",
   isAuthenticated,
   viewsController.confeccionRutinas
 );
+
+router.get("/rutina/:number/:uid", isAuthenticated, viewsController.rutina);
 
 router.get("/loginprofesores", isNotAuthenticatedProfesor, (req, res) => {
   res.render("loginProfesores");

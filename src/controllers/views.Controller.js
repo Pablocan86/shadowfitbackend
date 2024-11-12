@@ -20,9 +20,18 @@ exports.home = async (req, res) => {
 };
 
 exports.confeccionRutinas = async (req, res) => {
-  let alumnos = await userService.traeUsuarios();
+  let { uid } = req.params;
+  let alumno = await userService.traeUnUsuario(uid);
   res.render("confeccionRutinas", {
     style: "confeccionRutinas.css",
-    alumnos: alumnos,
+    alumno: alumno,
   });
+};
+
+exports.rutina = async (req, res) => {
+  let { number, uid } = req.params;
+  let usuario = await userService.traeUnUsuario(uid);
+  let rutina = usuario.rutinas[number];
+  console.log(rutina);
+  res.render("rutina", { rutina: rutina });
 };

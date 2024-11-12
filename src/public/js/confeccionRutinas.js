@@ -298,7 +298,7 @@ agregarEjercicio.addEventListener("click", function () {
 
 document
   .getElementById("generarDocumento")
-  .addEventListener("click", function () {
+  .addEventListener("click", async () => {
     // Obtener la sección muestra_rutina
     const muestraRutina = document.getElementById("muestra_rutina");
 
@@ -474,6 +474,20 @@ document
 
     // Simular clic en el enlace para iniciar la descarga
     link.click();
+
+    const idAlumno = uid.getAttribute("data-id");
+    const response = await fetch(`/api/users/cargarrutina/${idAlumno}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ rutina: nuevoDocumento }),
+    });
+    const result = await response.json();
+
+    if (response.ok) {
+      window.location.reload();
+    }
   });
 
 //Hago que el button eliminar borre todo el contenido de la rutina
@@ -490,29 +504,27 @@ borrarRutnia.addEventListener("click", () => {
 // Guardado de rutina provisorio
 
 const guardarRutina = document.querySelector("#guardarRutina");
-const uid = document.querySelector("#usuario_id");
+const uid = document.querySelector("#nombreAlumno");
 
-guardarRutina.addEventListener("click", async (e) => {
-  e.preventDefault();
-  const id = uid.getAttribute("data-id");
-  const pid = lista.value;
+// guardarRutina.addEventListener("click", async (e) => {
+//   e.preventDefault();
+//   const idAlumno = uid.getAttribute("data-id");
+//   const response = await fetch(`/api/users/cargarrutina/${idAlumno}`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ rutina: muestraRutina.innerHTML }),
+//   });
+//   const result = await response.json();
 
-  const response = await fetch(`/api/users/cargarRutina/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: muestraRutina.innerHTML,
-  });
-  const result = await response.json();
-
-  if (response.ok) {
-    console.log(body);
-    window.location.reload();
-  }
-});
-
-// guardarRutina.addEventListener("click", () => {
-//   let contenidoHTML = muestraRutina.innerHTML;
-//   localStorage.setItem("contenido_rutina", contenidoHTML);
+//   if (response.ok) {
+//     console.log(result);
+//     // window.location.reload();
+//   }
 // });
+
+guardarRutina.addEventListener("click", () => {
+  let contenidoHTML = muestraRutina.innerHTML;
+  localStorage.setItem("contenido_rutina", contenidoHTML);
+});
