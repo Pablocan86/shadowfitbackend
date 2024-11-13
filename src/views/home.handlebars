@@ -1,19 +1,37 @@
-<div>
-  <h1>Bienvenidos a la página principal</h1>
-  {{#if session}}
-    {{#if alumno}}
-      <p>Hola {{alumno.nombre}} {{alumno.apellido}}</p>
-      <a href="/api/users/perfil/{{alumno.id}}">Perifl</a>
-    {{/if}}
-    {{#if profesor}}
-      <p>Hola {{profesor.nombre}} {{profesor.apellido}}</p>
-      <a href="/api/views/confeccionrutinas">Crear rutina</a>
-      <a href="/api/users/perfil/profesor/{{profesor.id}}">Perifl</a>
-    {{/if}}
-  {{else}}
-    <div>
-      <a href="./login">Ingreso alumnos</a>
-      <a href="./loginprofesores">Ingreso profesores</a>
-    </div>
-  {{/if}}
-</div>
+<header>
+  
+    <img src="https://i.ibb.co/4WsHDQX/Artboard-1-copy-8.png" alt="logo" />
+  
+  <nav>
+    <ul>
+      <li>Home</li>
+      <li>Novedades</li>
+      <li>Rutinas</li>
+      {{#if session}}
+        {{#if alumno}}
+          <li>Hola
+            {{alumno.nombre}}
+            {{alumno.apellido}}
+            <a href="/api/users/perfil/{{alumno.id}}">Perifl</a></li>
+        {{/if}}
+        {{#if profesor}}
+          <li>Hola
+            {{profesor.nombre}}
+            {{profesor.apellido}}<a
+              href="/api/users/perfil/profesor/{{profesor.id}}"
+            >Perifl</a></li>
+
+        {{/if}}
+      {{else}}
+        
+          <li><a href="./login">Alumnos</a></li>
+          <li><a href="./loginprofesores">Profesores</a></li>
+        </div>
+      {{/if}}
+    </ul>
+  </nav>
+</header>
+<main>
+
+</main>
+<footer></footer>

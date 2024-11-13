@@ -30,6 +30,7 @@ const divResultados = document.querySelector("#resultados");
 const seriesRepeticiones = document.querySelector("#series_repeticiones");
 const agregarEjercicio = document.querySelector("#agregar_ejercicio");
 const observaciones = document.querySelector("#observaciones");
+const profesor = document.querySelector("#nombreProfesor");
 //CLASE MOLDE PARA EJERCICIOS
 class Ejercicio {
   constructor(id, nombre, musculo, video, imagen) {
@@ -314,7 +315,8 @@ document
         imagenes[i].parentNode.removeChild(imagenes[i]);
       }
     }
-
+    const idProfesor = profesor.getAttribute("data-id");
+    const idAlumno = uid.getAttribute("data-id");
     // Crear un nuevo documento HTML con el contenido filtrado
     const nuevoDocumento =
       "<!DOCTYPE html>" +
@@ -457,7 +459,152 @@ document
       ${nuevaSeccion.innerHTML}
       </section>
       </main>
-      <footer></footer>
+      <footer><a href="/api/users/perfil/${idAlumno}">Ir a perfil</a></footer>
+      </body> 
+      </html>`;
+
+    const documentoProfesor =
+      "<!DOCTYPE html>" +
+      "<html lang='en'>" +
+      "<head>" +
+      "<meta charset='UTF-8'>" +
+      "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+      "<link rel='shortcut icon' href='https://icons8.com/icon/65485/barbell' type='image/x-icon'>" +
+      `<title> 
+      ${apellido.value} 
+      ${nombre.value} 
+      </title>
+      <style>
+      * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 100%;
+      background-color: black;
+      color: white;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    header{
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      margin-right:10px;
+    }
+
+    .logo_shadow{
+      width:300px;
+      height:150px;
+      margin-left:20px;
+    }
+    main {
+      color: white;
+    }
+
+   .h2_dia {
+      background-color: white;
+      color: black;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap:10px; 
+      align-items: space-around;
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .datos_actuales {
+      display: flex;
+      flex: row;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+      border: 1px solid white;
+      padding: 5px;
+      margin: 5px;
+      text-align: center;
+    }
+    .fecha_nombre {
+      width: 80%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .nombre_apellido {
+      font-weight: 500;
+    }
+    
+.imagen_perfil {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  
+}
+.ejercicio {
+  background-image: linear-gradient(to right, #a4161a, #161a1d);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+
+.ejercicio p{
+  width: 20%; 
+  
+}
+
+.tituloEjercicio{
+  font-weight: bolder;
+}
+
+.dato{
+  font-style: italic;
+  }
+.imagenV {
+  width: 50px;
+  height: 50px;
+}
+.h3_circuito {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(167, 158, 158);
+ 
+  margin: 5px;
+  
+}
+
+
+
+
+.btnQuitar{
+  display: none;
+} 
+
+
+    
+      </style>` +
+      "</head>" +
+      `<body> 
+      <header>
+      <img class="logo_shadow" src="https://i.ibb.co/4WsHDQX/Artboard-1-copy-8.png"/><div><h1>RUTINA DE ENTRENAMIENTO</h1></header>
+      <main>
+      <section id="muestra_rutina">
+      ${nuevaSeccion.innerHTML}
+      </section>
+      </main>
+      <footer><a href="/api/users/perfil/profesor/${idProfesor}">Ir a perfil</a></footer>
       </body> 
       </html>`;
 
@@ -474,14 +621,19 @@ document
 
     // Simular clic en el enlace para iniciar la descarga
     link.click();
+    let date = new Date();
+    let bodyPropiedad = {
+      fecha: date,
+      vistaAlumno: nuevoDocumento,
+      vistaProfesor: documentoProfesor,
+    };
 
-    const idAlumno = uid.getAttribute("data-id");
     const response = await fetch(`/api/users/cargarrutina/${idAlumno}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ rutina: nuevoDocumento }),
+      body: JSON.stringify({ rutina: bodyPropiedad }),
     });
     const result = await response.json();
 

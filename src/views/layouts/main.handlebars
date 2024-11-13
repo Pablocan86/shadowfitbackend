@@ -1,5 +1,9 @@
 {{#if rutina}}
-{{{rutina}}}
+{{#if alumno}}
+{{{rutina.vistaAlumno}}}
+{{else}}
+{{{rutina.vistaProfesor}}}
+{{/if}}
 {{else}}
 <html lang="en"></html>
   <head>

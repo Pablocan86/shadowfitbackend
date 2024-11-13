@@ -26,7 +26,10 @@ router.get(
 router.get("/rutina/:number/:uid", isAuthenticated, viewsController.rutina);
 
 router.get("/loginprofesores", isNotAuthenticatedProfesor, (req, res) => {
-  res.render("loginProfesores");
+  res.render("loginProfesores", {
+    style: "loginProfesores.css",
+    title: "Ingreso profesores",
+  });
 });
 
 router.get("/registro", (req, res) => {

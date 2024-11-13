@@ -2,10 +2,15 @@
   <h1>ARMADO DE RUTINAS</h1>
 </header>
 <main>
-  <h2 id="nombreAlumno" data-id="{{alumno._id}}">ALUMNO:
-    {{alumno.apellido}}
-    {{alumno.nombre}}</h2>
-
+  <div>
+    <h2 id="nombreAlumno" data-id="{{alumno._id}}">ALUMNO:
+      {{alumno.apellido}}
+      {{alumno.nombre}}</h2>
+    <h2 id="nombreProfesor" data-id="{{profesor._id}}">PROFESOR:
+      {{profesor.nombre}}
+      {{profesor.apellido}}
+    </h2>
+  </div>
   <section class="section_ingreso_datos">
     <div class="datos_personales">
       <label for="fecha">
@@ -24,7 +29,7 @@
           type="text"
           name="nombre"
           id="nombre"
-          placeholder="Nombre"
+          placeholder="{{alumno.nombre}}"
         /></label>
 
       <label for="apellido"><img
@@ -35,10 +40,10 @@
         <input
           type="text"
           id="apellido"
-          placeholder="Apellido"
+          placeholder="{{alumno.apellido}}"
           name="apellido"
         /></label>
-
+      {{! LOGRAR TRAER IMAGEN DE LA FOTO DE PERFIL }}
       <label for="input-imagen"><img
           class="img_datos"
           src="https://www.svgrepo.com/show/258843/link.svg"
@@ -150,6 +155,6 @@
     <button class="btns_guardado" id="borrarRutina">Borrar</button>
   </div>
 </main>
-<footer></footer>
+<footer><a href="/api/users/perfil/profesor/{{profesor._id}}">Volver a perfil</a></footer>
 
 <script src="/js/confeccionRutinas.js"></script>

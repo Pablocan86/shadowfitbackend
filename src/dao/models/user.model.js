@@ -13,7 +13,16 @@ const userSchema = new mongoose.Schema({
   cumpleanos: String,
   fecha_registro: String,
   profesor: { type: String, default: "" },
-  rutinas: { type: [String], default: [] },
+  rutinas: {
+    type: [
+      {
+        fecha: { type: String },
+        vistaAlumno: { type: String },
+        vistaProfesor: { type: String },
+      },
+    ],
+    default: [],
+  },
   rol: { type: String, default: "alumno" },
 });
 
