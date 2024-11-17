@@ -31,6 +31,8 @@ const seriesRepeticiones = document.querySelector("#series_repeticiones");
 const agregarEjercicio = document.querySelector("#agregar_ejercicio");
 const observaciones = document.querySelector("#observaciones");
 const profesor = document.querySelector("#nombreProfesor");
+
+let fechaRutina;
 //CLASE MOLDE PARA EJERCICIOS
 class Ejercicio {
   constructor(id, nombre, musculo, video, imagen) {
@@ -85,14 +87,15 @@ cargaUno.addEventListener("click", () => {
     // const imagenURL = sessionStorage.getItem("imagenURL");
 
     fechaFormateada = fechaFormateada.replace(/^\w/, (c) => c.toUpperCase());
-
+    fechaRutina = fechaFormateada;
     ingresoFecha.innerHTML += `<div class="datos_actuales"><div class="fecha_nombre"><p>Fecha: ${fechaFormateada} </p>
-  <p class="nombre_apellido"><span class="apellido_span">${apellido.value.toUpperCase()}</span>${" "}<span class="nombre_span">${nombre.value.toUpperCase()}</span> </p>
-  </div><img class="imagen_perfil" src="${imagenPerfil.value}"/></div>`;
+  <p class="nombre_apellido"><span class="apellido_span">${
+    apellido.textContent
+  }</span>${" "}<span class="nombre_span">${nombre.textContent}</span> </p>
+  </div>
+  
+  </div>`;
 
-    nombre.value = "";
-    apellido.value = "";
-    imagenPerfil.value = "";
     fecha.value = "";
   }
 });
@@ -621,9 +624,9 @@ document
 
     // Simular clic en el enlace para iniciar la descarga
     link.click();
-    let date = new Date();
+
     let bodyPropiedad = {
-      fecha: date,
+      fecha: fechaRutina,
       vistaAlumno: nuevoDocumento,
       vistaProfesor: documentoProfesor,
     };

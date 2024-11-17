@@ -3,9 +3,7 @@
 </header>
 <main>
   <div>
-    <h2 id="nombreAlumno" data-id="{{alumno._id}}">ALUMNO:
-      {{alumno.apellido}}
-      {{alumno.nombre}}</h2>
+    <h2 id="nombreAlumno" data-id="{{alumno._id}}"></h2>
     <h2 id="nombreProfesor" data-id="{{profesor._id}}">PROFESOR:
       {{profesor.nombre}}
       {{profesor.apellido}}
@@ -25,26 +23,33 @@
           src="https://www.svgrepo.com/show/474473/personal-id.svg"
           alt=""
         />
-        <input
+        <p id="nombre" style="text-transform:uppercase;">{{alumno.nombre}}</p>
+        {{!-- <input
           type="text"
           name="nombre"
           id="nombre"
           placeholder="{{alumno.nombre}}"
-        /></label>
+        /> --}}
+      </label>
 
       <label for="apellido"><img
           class="img_datos"
           src="https://www.svgrepo.com/show/474473/personal-id.svg"
           alt=""
         />
-        <input
+        <p
+          id="apellido"
+          style="text-transform:uppercase;"
+        >{{alumno.apellido}}</p>
+        {{!-- <input
           type="text"
           id="apellido"
           placeholder="{{alumno.apellido}}"
           name="apellido"
-        /></label>
+        /> --}}
+      </label>
       {{! LOGRAR TRAER IMAGEN DE LA FOTO DE PERFIL }}
-      <label for="input-imagen"><img
+      {{! <label for="input-imagen"><img
           class="img_datos"
           src="https://www.svgrepo.com/show/258843/link.svg"
           alt=""
@@ -53,7 +58,7 @@
           type="text"
           id="input-imagen"
           placeholder="Link de imagen..."
-        /></label>
+        /></label> }}
 
       <button id="carga_uno"></button>
     </div>
@@ -155,6 +160,6 @@
     <button class="btns_guardado" id="borrarRutina">Borrar</button>
   </div>
 </main>
-<footer><a href="/api/users/perfil/profesor/{{profesor._id}}">Volver a perfil</a></footer>
+<footer><a href="/api/users/perfil/profesor/{{profesor._id}}">Volver al perfil</a></footer>
 
 <script src="/js/confeccionRutinas.js"></script>

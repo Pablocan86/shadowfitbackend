@@ -54,14 +54,9 @@ form button {
   border: none;
   width: 90%;
   height: 25px;
-  cursor: pointer;
+
   color: white;
   font-weight: bold;
-}
-
-form button:hover {
-  background-color: black;
-  color: white;
 }
 
 .volver {

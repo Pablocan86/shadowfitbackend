@@ -47,14 +47,23 @@ exports.perfilProfesor = async (req, res) => {
       let alumno = await userService.traeUnUsuario(id);
       listaAlumnos.push(alumno);
     }
-    res.render("perfilProfesor", { profesor: profesor, alumnos: listaAlumnos });
+    res.render("perfilProfesor", {
+      profesor: profesor,
+      alumnos: listaAlumnos,
+      style: "perfilProfesor.css",
+      title: "Perfil",
+    });
   } catch (error) {}
 };
 
 exports.panelAlumnos = async (req, res) => {
   let { uid } = req.params;
   let alumno = await userService.traeUnUsuario(uid);
-  res.render("panelAlumnos", { alumno: alumno });
+  res.render("panelAlumnos", {
+    alumno: alumno,
+    style: "panelAlumno.css",
+    title: "Panel Alumno",
+  });
 };
 
 exports.login = async (req, res) => {

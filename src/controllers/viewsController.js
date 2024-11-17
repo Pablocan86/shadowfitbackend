@@ -49,3 +49,19 @@ exports.rutina = async (req, res) => {
   let rutina = usuario.rutinas[number];
   res.render("rutina", { rutina: rutina, alumno });
 };
+
+exports.alumnoRegistrado = async (req, res) => {
+  res.render("register", {
+    style: "registro.css",
+    title: "Registro Alumnos",
+    message: "Registro exitoso",
+  });
+};
+
+exports.profesorRegistrado = async (req, res) => {
+  res.render("registroProfesores", {
+    style: "registroProfesores.css",
+    title: "Registro Profesores",
+    message: "Registro exitoso",
+  });
+};

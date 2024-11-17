@@ -1,26 +1,44 @@
-<header><img src="" alt="" /><h2></h2></header>
+<header><h1>PERFIL PROFESOR</h1></header>
 <main>
-  <h1>PERFIL PROFESOR</h1>
-  <div>
-    <p>Nombre: {{profesor.nombre}}</p>
-    <p>Apellido: {{profesor.apellido}}</p>
-    <div>
-      <h2>ALUMNOS</h2>
-      <ul>
+  <div class="profesorCuadro">
+    <div class="datos1">
+      <img
+        class="fotoPerfil"
+        src="https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2016/09/569465-whatsapp-que-tus-contactos-ponen-rana-perfil.jpg?tf=1920x"
+        alt=""
+      />
+      <div>
+        <p>Nombre: {{profesor.nombre}}</p>
+        <p>Apellido: {{profesor.apellido}}</p>
+        <p>Correo: {{profesor.email}}</p>
+      </div>
+    </div>
+  </div>
+  <section class="alumnos">
+    <h2>ALUMNOS</h2>
+    {{#if alumnos}}
+      <ul class="listaAlumnos">
+
         {{#each alumnos}}
-          <li>{{this.nombre}}
-            {{this.apellido}}
-            <a href="/api/users/panelAlumno/{{this._id}}">Ir</a><a
+          <li class="alumno"><p>{{this.nombre}}
+              {{this.apellido}}</p>
+            <a href="/api/users/panelAlumno/{{this._id}}">Ver</a><a
               href="/api/views/confeccionrutinas/{{this._id}}"
             >Crear rutina</a>
           </li>
         {{/each}}
       </ul>
-    </div>
-    <a href="/api/views/paginaprincipal">Ir a página principal</a>
+    {{else}}
+      <p>Aun no tiene alumnos</p>
 
-    <form action="/api/session/logout" method="post"><button
-        type="submit"
-      >Cerrar cesión</button></form>
-  </div>
+    {{/if}}
+  </section>
+  <a class="volver" href="/api/views/paginaprincipal">Ir a página principal</a>
+
+  <form action="/api/session/logout" method="post"><button
+      class="logout"
+      type="submit"
+    >Cerrar cesión</button></form>
+
 </main>
+<footer>Todos los derechos reservados &copy; Cantarin Pablo</footer>

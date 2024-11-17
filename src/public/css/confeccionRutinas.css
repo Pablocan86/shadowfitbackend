@@ -18,6 +18,13 @@ header h1 {
 main {
   color: white;
 }
+
+main h2 {
+  text-transform: uppercase;
+  text-align: right;
+  font-size: 1rem;
+  padding-right: 10px;
+}
 .section_ingreso_datos {
   width: 99%;
   display: flex;
@@ -316,6 +323,30 @@ main {
 .btns_guardado:hover {
   cursor: pointer;
   background-color: #161a1d;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+footer a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border: 1px solid white;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+footer a:hover {
+  background-color: white;
+  color: black;
 }
 
 /* RESPONSIVE */

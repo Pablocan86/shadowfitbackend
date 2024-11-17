@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const viewsController = require("../controllers/views.Controller.js");
+const viewsController = require("../controllers/viewsController.js");
 const {
   isAuthenticated,
   isNotAuthenticated,
@@ -14,7 +14,7 @@ router.get("/chat", (req, res) => {
 router.get("/paginaprincipal", viewsController.home);
 
 router.get("/login", isNotAuthenticated, (req, res) => {
-  res.render("login");
+  res.render("login", { style: "login.css", title: "Login Alumnos" });
 });
 
 router.get(
@@ -33,11 +33,14 @@ router.get("/loginprofesores", isNotAuthenticatedProfesor, (req, res) => {
 });
 
 router.get("/registro", (req, res) => {
-  res.render("register");
+  res.render("register", { style: "registro.css", title: "Registro Alumnos" });
 });
 
 router.get("/registroprofesores", (req, res) => {
-  res.render("registroProfesores");
+  res.render("registroProfesores", {
+    style: "registroProfesores.css",
+    title: "Registro Profesores",
+  });
 });
 
 router.get("/", (req, res) => {

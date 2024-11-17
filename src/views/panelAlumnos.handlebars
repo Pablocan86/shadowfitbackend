@@ -1,13 +1,40 @@
-<div>
-  {{!En este sector se visualizan datos del alumno}}
+<header><h1>PANEL ALUMNO</h1></header>
+<main>
 
-  <p id="usuario_id" data-id="{{alumno._id}}">{{alumno.nombre}}
-    {{alumno.apellido}}</p>
+  {{!En este sector se visualizan datos del alumno}}
+<div class="alumnoCuadro">
+    <div class="datos1">
+      <img
+        class="fotoPerfil"
+        src="https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2016/09/569465-whatsapp-que-tus-contactos-ponen-rana-perfil.jpg?tf=1920x"
+        alt=""
+      />
+      <div id="usuario_id" data-id="{{alumno._id}}">
+        <p >Nombre: {{alumno.nombre}}</p>
+        <p>Apellido: {{alumno.apellido}}</p>
+        <p>Correo: {{alumno.email}}</p>
+        <p>Fecha de comienzo: {{alumno.fecha_registro}}</p>
+      </div>
+    </div>
+  </div>
+ 
   {{!Hay que agregar tres bloques de codigo uno para rutinas (en este estarán la lista de rutinas y un link que deriva a ellas), otro dietas (los mismo que las rutinas), otro progresos (con imágenes con fechas)}}
-  <ul>
+  <section>
+    <h2>RUTINAS</h2>
+  <ul class="listaRutinas">
   {{#each alumno.rutinas}}
-    <li><a href="/api/views/rutina/{{@index}}/{{../alumno._id}}">Rutina {{@index}}</a></li>
+    <li><a href="/api/views/rutina/{{@index}}/{{../alumno._id}}">Ver rutina</a></li>
   {{/each}}
   </ul>
+  </section>
+  <section>
+    <h2>DIETAS</h2>
+  </section>
+  <section>
+    <h2>PROGRESOS</h2>
+  </section>
+
   <a href="/api/users/perfil/profesor/{{alumno.profesor}}">Volver al perfil</a>
-</div>
+
+</main>
+<footer>&copy; Cantarin Pablo</footer>

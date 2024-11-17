@@ -122,13 +122,13 @@ const initializePassport = () => {
       { usernameField: "email" },
       async (username, password, done) => {
         try {
-          const profesor = await userService.traeUnProfesorEmail(username);
-          if (!profesor) {
+          const usuario = await userService.traeUnProfesorEmail(username);
+          if (!usuario) {
             console.log("Usuario no existe");
             return done(null, usuario);
           }
-          if (!isValidPassword(profesor, password)) return done(null, false);
-          return done(null, profesor);
+          if (!isValidPassword(usuario, password)) return done(null, false);
+          return done(null, usuario);
         } catch (error) {
           return done(error);
         }
