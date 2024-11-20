@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
   password: String,
   cumpleanos: String,
   fecha_registro: String,
+  foto_perfil: {
+    data: Buffer,
+    contentType: String,
+  },
   profesor: { type: String, default: "" },
   rutinas: {
     type: [

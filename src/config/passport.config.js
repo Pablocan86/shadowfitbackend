@@ -32,6 +32,7 @@ const initializePassport = () => {
             email,
             password: createHash(password),
             cumpleanos,
+            foto_perfil: null,
             fecha_registro: fechaActual,
           };
 

@@ -187,3 +187,46 @@ exports.actualizarUsuario = async (req, res) => {
     res.json({ message: "Error al acualizar" });
   }
 };
+
+exports.cargarFotoPerfilAlumno = async (req, res) => {
+  const { uid } = req.params;
+  try {
+    const user = await userService.traeUnUsuario(uid);
+    if (!user) return res.status(404).send("Usuario no encontrado");
+    nuevaPropiedad = {
+      data: req.file.buffer,
+      contentType: req.file.mimetype,
+    };
+
+    await userService.actualizaPropiedad(uid, { foto_perfil: nuevaPropiedad });
+    res.send("Foto de perfil guardada correctamente");
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
+exports.traerImagenPerfil = async (req, res) => {
+  try {
+    // Buscar al usuario por ID
+    const user = await userService.traeUsuarios(req.params.id);
+
+    // Verificar si el usuario existe
+    if (!user) {
+      return res.status(404).send("Usuario no encontrado.");
+    }
+
+    // Verificar si el usuario tiene una foto de perfil
+    if (!user.foto_perfil || !user.foto_perfil.data) {
+      return res.status(404).send("No hay foto de perfil disponible.");
+    }
+
+    // Configurar el tipo de contenido correcto según el MIME tipo
+    res.set("Content-Type", user.foto_perfil.contentType);
+
+    // Enviar la imagen (buffer) como respuesta
+    console.log(user.foto_perfil.data);
+    res.send(user.foto_perfil.data);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};

@@ -2,6 +2,7 @@ const express = require("express");
 const usersRouter = require("./routes/users.router.js");
 const viewsRouter = require("./routes/views.router.js");
 const sessionRouter = require("./routes/api/session.router.js");
+const paymentRouter = require("./routes/payment.routes.js");
 const handlebars = require("express-handlebars");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
@@ -63,5 +64,6 @@ connectMongoDB();
 app.use("/api/users", usersRouter);
 app.use("/api/views", viewsRouter);
 app.use("/api/session", sessionRouter);
+app.use("/api/mp", paymentRouter);
 
 // app.listen(PORT, () => console.log(`Server runninng on PORT:${PORT}`));

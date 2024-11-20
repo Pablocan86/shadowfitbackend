@@ -1,6 +1,21 @@
-<div id="usuario_id" data-id="{{usuario._id}}">
-  <p>{{usuario.nombre}}</p>
-  <p>{{usuario.apellido}}</p>
+<header><h1>PERFIL ALUMNO</h1></header>
+<main id="usuario_id" data-id="{{usuario._id}}">
+<div class="alumnoCuadro">
+  <div class="datos1">
+    <div>
+      <img src="/api/users/ver-foto-perfil-alumno/{{usuario._id}}" alt="">
+      <form action="/api/users/cargar-foto-perfil-alumno/{{usuario._id}}" method="post" enctype="multipart/form-data">
+      <label for="fotoPerfil">Cargar foto</label>
+      <input type="file" name="fotoPerfil" id="fotoPerfil">
+      <button type="submit">Subir</button>
+      </form>
+    </div>
+    <div>
+<p>Nombre: {{usuario.nombre}}</p>
+  <p>Apellido: {{usuario.apellido}}</p>
+    </div>
+  </div>
+  
 </div>
 {{#if isProfesor}}
   <h2>Profesor designado</h2>
@@ -24,12 +39,16 @@
 
   <form action=""><button id="select_profesor" type="submit">Guardar Profesor|</button></form>
 {{/if}}
+<section>
+  <h2>RUTINAS</h2>
 <ul>
 {{#each usuario.rutinas}}
 <li><a href="/api/views/rutina/{{@index}}/{{../usuario._id}}">Rutina {{@index}}</a></li>
 {{/each}}
 </ul>
+</section>
 <form action="/api/session/logout" method="post"><button type="submit">Cerrar
     cesión</button></form>
-
+</main>
+<footer>Todos los derechos reservados &copy; Cantarin Pablo</footer>
 <script src="/js/perfilAlumno.js"></script>
