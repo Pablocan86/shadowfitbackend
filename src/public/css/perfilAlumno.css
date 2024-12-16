@@ -5,10 +5,13 @@
 }
 
 body {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 header h1 {
   background-color: black;
@@ -16,7 +19,6 @@ header h1 {
   width: 100%;
   text-align: center;
 }
-
 main {
   padding-top: 10px;
   width: 100%;
@@ -28,27 +30,17 @@ main {
   padding-bottom: 10px;
 }
 
-.profesorCuadro {
-  padding: 10px;
-  width: 90%;
-
+.datos1 {
   display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px black;
-  margin: auto auto;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
 }
 
 .imagenPerfil {
   width: 150px;
   height: 150px;
-}
-
-.datos1 {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
 }
 
 .cargarFoto {
@@ -82,81 +74,71 @@ main {
   border-color: #0056b3;
 }
 
-.alumnos {
-  width: 99%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  padding-top: 10px;
+.profesorYRutinas {
   border: 1px solid black;
-  margin: 10px;
-}
-
-.listaAlumnos {
-  list-style: none;
+  height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.alumno {
-  border-bottom: 1px solid black;
-  margin: 10px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 }
 
-.alumno p {
-  width: 33%;
+.profesor {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.contenedorImagen {
-  position: relative;
-}
-.infoAlumno {
-  width: 20px;
-  height: 20px;
-}
-.info-cuadro {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  display: none;
-}
-
-.crearRutina {
-  width: 20px;
-  height: 20px;
-}
-
-.info-rutina {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  display: none;
-}
-
-.volver {
+.profesor h2,
+.rutinas h2 {
   background-color: black;
-  border-radius: 10px;
   color: white;
-  width: 200px;
-  height: 1.5rem;
-  text-decoration: none;
+  width: 100%;
   text-align: center;
+}
+
+.rutinas {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lista {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+
+  color: white;
+}
+
+.lista li {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: black;
+}
+
+.lista li a {
+  text-decoration: none;
+  color: white;
+}
+
+.lista li a img {
+  width: 40px;
+  height: 40px;
 }
 
 .logout {
@@ -173,7 +155,6 @@ main {
 .logout:hover {
   background-color: black;
 }
-
 footer {
   width: 100%;
   height: 15vh;

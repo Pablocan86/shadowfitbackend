@@ -1,7 +1,8 @@
 const lista = document.querySelector("#profesores");
 const selectProfesor = document.querySelector("#select_profesor");
 const uid = document.querySelector("#usuario_id");
-
+const archivo = document.querySelector(".archivo");
+const labelFoto = document.querySelector(".inputFoto");
 if (selectProfesor) {
   selectProfesor.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -21,3 +22,12 @@ if (selectProfesor) {
     }
   });
 }
+
+archivo.addEventListener("change", function (e) {
+  const fileInput = e.target;
+  if (fileInput.files.length > 0) {
+    labelFoto.textContent = "Cambiar foto";
+  } else {
+    labelFoto.textContent = "Elegir foto";
+  }
+});

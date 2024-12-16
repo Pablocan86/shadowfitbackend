@@ -4,11 +4,19 @@
   {{!En este sector se visualizan datos del alumno}}
 <div class="alumnoCuadro">
     <div class="datos1">
+      {{#if alumno.foto_perfil}}
       <img
         class="fotoPerfil"
-        src="https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2016/09/569465-whatsapp-que-tus-contactos-ponen-rana-perfil.jpg?tf=1920x"
+        src="/api/users/ver-foto-perfil-alumno/{{alumno._id}}"
         alt=""
       />
+      {{else}}
+      <img
+        class="fotoPerfil"
+        src="https://www.svgrepo.com/show/530412/user.svg"
+        alt=""
+      />
+      {{/if}}
       <div id="usuario_id" data-id="{{alumno._id}}">
         <p >Nombre: {{alumno.nombre}}</p>
         <p>Apellido: {{alumno.apellido}}</p>

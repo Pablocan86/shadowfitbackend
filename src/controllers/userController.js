@@ -1,6 +1,6 @@
 const UserManager = require("../dao/classes/users.dao.js");
 const { createHash, isValidPassword } = require("../utils.js");
-
+const { Buffer } = require("buffer");
 const userService = new UserManager();
 
 exports.traeUsuarios = async (req, res) => {
@@ -29,6 +29,7 @@ exports.perfilAlumno = async (req, res) => {
     }
 
     res.render("perfilAlumno", {
+      style: "perfilAlumno.css",
       usuario: usuario,
       profesores: profesores,
       isProfesor: isProfesor,
@@ -199,7 +200,25 @@ exports.cargarFotoPerfilAlumno = async (req, res) => {
     };
 
     await userService.actualizaPropiedad(uid, { foto_perfil: nuevaPropiedad });
-    res.send("Foto de perfil guardada correctamente");
+    res.redirect(`/api/users/perfil/${user._id}`);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+exports.cargarFotoPerfilProfesor = async (req, res) => {
+  const { uid } = req.params;
+  try {
+    const user = await userService.traeUnProfesor(uid);
+    if (!user) return res.status(404).send("Usuario no encontrado");
+    nuevaPropiedad = {
+      data: req.file.buffer,
+      contentType: req.file.mimetype,
+    };
+
+    await userService.actualizaPropiedadProfesor(uid, {
+      foto_perfil: nuevaPropiedad,
+    });
+    res.redirect(`/api/users/perfil/profesor/${user._id}`);
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -208,8 +227,7 @@ exports.cargarFotoPerfilAlumno = async (req, res) => {
 exports.traerImagenPerfil = async (req, res) => {
   try {
     // Buscar al usuario por ID
-    const user = await userService.traeUsuarios(req.params.id);
-
+    const user = await userService.traeUnUsuario(req.params.id);
     // Verificar si el usuario existe
     if (!user) {
       return res.status(404).send("Usuario no encontrado.");
@@ -220,12 +238,44 @@ exports.traerImagenPerfil = async (req, res) => {
       return res.status(404).send("No hay foto de perfil disponible.");
     }
 
+    const imagenBuffer = Buffer.from(
+      user.foto_perfil.data.buffer || user.foto_perfil.data,
+      "base64"
+    );
+
     // Configurar el tipo de contenido correcto según el MIME tipo
     res.set("Content-Type", user.foto_perfil.contentType);
 
     // Enviar la imagen (buffer) como respuesta
-    console.log(user.foto_perfil.data);
-    res.send(user.foto_perfil.data);
+    res.send(imagenBuffer);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+exports.traerImagenPerfilProfesor = async (req, res) => {
+  try {
+    // Buscar al usuario por ID
+    const user = await userService.traeUnProfesor(req.params.id);
+    // Verificar si el usuario existe
+    if (!user) {
+      return res.status(404).send("Usuario no encontrado.");
+    }
+
+    // Verificar si el usuario tiene una foto de perfil
+    if (!user.foto_perfil || !user.foto_perfil.data) {
+      return res.status(404).send("No hay foto de perfil disponible.");
+    }
+
+    const imagenBuffer = Buffer.from(
+      user.foto_perfil.data.buffer || user.foto_perfil.data,
+      "base64"
+    );
+
+    // Configurar el tipo de contenido correcto según el MIME tipo
+    res.set("Content-Type", user.foto_perfil.contentType);
+
+    // Enviar la imagen (buffer) como respuesta
+    res.send(imagenBuffer);
   } catch (err) {
     res.status(500).send(err.message);
   }

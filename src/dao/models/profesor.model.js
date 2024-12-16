@@ -16,6 +16,10 @@ const profesorSchema = new mongoose.Schema({
   password: String,
   cumpleanos: String,
   fecha_registro: String,
+  foto_perfil: {
+    data: Buffer,
+    contentType: String,
+  },
   alumnos: { type: [], default: [] },
   rol: { type: String, default: "profesor" },
 });

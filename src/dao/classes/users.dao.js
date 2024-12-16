@@ -66,6 +66,10 @@ class UserManager {
     let result = await userModel.updateOne({ _id: uid }, valor);
     return result;
   }
+  async actualizaPropiedadProfesor(uid, valor) {
+    let result = await profesorModel.updateOne({ _id: uid }, valor);
+    return result;
+  }
 }
 
 module.exports = UserManager;

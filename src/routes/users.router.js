@@ -31,9 +31,19 @@ router.post(
   upload.single("fotoPerfil"),
   userController.cargarFotoPerfilAlumno
 );
+router.post(
+  "/cargar-foto-perfil-profesor/:uid",
+  upload.single("fotoPerfil"),
+  userController.cargarFotoPerfilProfesor
+);
 
 // Ruta para servir la foto de perfil desde MongoDB
 router.get("/ver-foto-perfil-alumno/:id", userController.traerImagenPerfil);
+
+router.get(
+  "/ver-foto-perfil-profesor/:id",
+  userController.traerImagenPerfilProfesor
+);
 
 // router.post(
 //   "/cargar-foto-perfil-profesor/:uid",
