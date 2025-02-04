@@ -84,18 +84,32 @@ const initializePassport = () => {
     done(null, user._id);
   });
 
-  passport.deserializeUser(async (id, done) => {
-    let user;
-    let profesor = await userService.traeUnProfesor(id);
-    let alumno = await userService.traeUnUsuario(id);
-    if (profesor) {
-      user = profesor;
-    }
-    if (alumno) {
-      user = alumno;
-    }
+  // passport.deserializeUser(async (id, done) => {
+  //   let user;
+  //   let profesor = await userService.traeUnProfesor(id);
+  //   let alumno = await userService.traeUnUsuario(id);
+  //   if (profesor) {
+  //     user = profesor;
+  //   }
+  //   if (alumno) {
+  //     user = alumno;
+  //   }
 
-    done(null, user);
+  //   done(null, user);
+  // });
+
+  //Corrección CHATGPT
+
+  passport.deserializeUser(async (id, done) => {
+    try {
+      let user = await userService.traeUnUsuario(id);
+      if (!user) {
+        user = await userService.traeUnProfesor(id);
+      }
+      return done(null, user || false);
+    } catch (error) {
+      return done(error);
+    }
   });
 
   passport.use(

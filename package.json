@@ -1,9 +1,10 @@
 {
   "name": "shadow_fit_backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "node --watch src/app.js"
+    "test": "node --watch src/app.js",
+    "dev": "nodemon server"
   },
   "keywords": [],
   "author": "",
@@ -23,8 +24,11 @@
     "mongoose": "^8.7.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.9",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
+    "pdfkit": "^0.15.2",
+    "puppeteer": "^23.11.1",
     "socket.io": "^4.8.0"
   }
 }

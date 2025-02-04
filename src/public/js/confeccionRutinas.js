@@ -320,6 +320,15 @@ document
     }
     const idProfesor = profesor.getAttribute("data-id");
     const idAlumno = uid.getAttribute("data-id");
+
+    const apellidoSpan = document.querySelector(".apellido_span");
+    const nombreSpan = document.querySelector(".nombre_span");
+
+    //Tomar datos del host
+
+    const protocol = window.location.protocol;
+    const host = window.location.host;
+
     // Crear un nuevo documento HTML con el contenido filtrado
     const nuevoDocumento =
       "<!DOCTYPE html>" +
@@ -329,8 +338,8 @@ document
       "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
       "<link rel='shortcut icon' href='https://icons8.com/icon/65485/barbell' type='image/x-icon'>" +
       `<title> 
-      ${apellido.value} 
-      ${nombre.value} 
+      Rutina de: ${apellidoSpan.textContent} 
+      ${nombreSpan.textContent} 
       </title>
       <style>
       * {
@@ -462,7 +471,7 @@ document
       ${nuevaSeccion.innerHTML}
       </section>
       </main>
-      <footer><a href="/api/users/perfil/${idAlumno}">Ir a perfil</a></footer>
+      <footer><a href="${protocol}//${host}/api/users/perfil/${idAlumno}">Ir a perfil</a></footer>
       </body> 
       </html>`;
 
@@ -474,8 +483,8 @@ document
       "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
       "<link rel='shortcut icon' href='https://icons8.com/icon/65485/barbell' type='image/x-icon'>" +
       `<title> 
-      ${apellido.value} 
-      ${nombre.value} 
+      Rutina de: ${apellidoSpan.textContent} 
+      ${nombreSpan.textContent} 
       </title>
       <style>
       * {
@@ -606,13 +615,12 @@ document
       <section id="muestra_rutina">
       ${nuevaSeccion.innerHTML}
       </section>
+     
       </main>
-      <footer><a href="/api/users/perfil/profesor/${idProfesor}">Ir a perfil</a></footer>
+      <footer><a href="${protocol}//${host}/api/users/perfil/profesor/${idProfesor}">Ir a perfil</a></footer>
+      <script src="/js/rutina.js"></script>
       </body> 
       </html>`;
-
-    const apellidoSpan = document.querySelector(".apellido_span");
-    const nombreSpan = document.querySelector(".nombre_span");
 
     // Convertir el contenido a un Blob
     const blob = new Blob([nuevoDocumento], { type: "text/html" });

@@ -73,7 +73,7 @@ exports.login = async (req, res) => {
       .status(400)
       .send({ status: "error", error: "Credenciales invalidas" });
   try {
-    if (!req.user) return res.redirect("/log");
+    if (!req.user) return res.redirect("/login");
     if (req.user.rol === "alumno") {
       req.session.user = {
         id: req.user._id,
@@ -101,7 +101,7 @@ exports.login = async (req, res) => {
       };
       return res.redirect(`/api/users/perfil/profesor/${req.session.user.id}`);
     }
-    return res.send({ message: "Usted es administrador" });
+    // return res.send({ message: "Usted es administrador" });
   } catch (err) {
     res.status(500).send("Error al iniciar sesión");
   }

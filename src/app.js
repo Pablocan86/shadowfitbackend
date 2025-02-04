@@ -13,6 +13,9 @@ const passport = require("passport");
 const initializePassport = require("./config/passport.config.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+
+//PDF
 
 dotenv.config();
 
@@ -26,13 +29,14 @@ const httpSever = app.listen(PORT, () =>
 const socketServer = new Server(httpSever);
 //Secreto
 app.use(cookieParser(/*Tiene que ir una frase secreta*/));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(
   session({
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URL }),
     secret: "shadowFit86",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: { secure: false },
   })
 );

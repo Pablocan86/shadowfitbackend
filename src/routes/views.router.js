@@ -23,7 +23,10 @@ router.get(
   viewsController.confeccionRutinas
 );
 
-router.get("/rutina/:number/:uid", isAuthenticated, viewsController.rutina);
+router.get("/rutina/:number/:uid", viewsController.rutina);
+router.get("/rutinaProfesor/:number/:uid", viewsController.rutinaProfesor);
+
+router.get("/createPDF/:number/:uid", viewsController.createPDF);
 
 router.get("/loginprofesores", isNotAuthenticatedProfesor, (req, res) => {
   res.render("loginProfesores", {

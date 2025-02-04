@@ -51,7 +51,10 @@
 <p>Cantidad: {{usuario.rutinas.length}}</p>
 <ul class="lista">
 {{#each usuario.rutinas}}
-<li><a href="/api/views/rutina/{{@index}}/{{../usuario._id}}"><img src="https://www.svgrepo.com/show/252602/file-view.svg" alt=""></a></li>
+
+<li><a href="/api/views/createPDF/{{@index}}/{{../usuario._id}}"><span class="material-symbols-outlined">
+picture_as_pdf
+</span> </a></li>
 {{/each}}
 </ul>
 </section>

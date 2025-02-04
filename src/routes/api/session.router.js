@@ -54,7 +54,11 @@ router.post(
 router.get("/home", userController.login);
 
 router.get("/failureLogin", (req, res) => {
-  res.render("login", { error: "Valores incorrectos" });
+  res.render("login", {
+    error: "Valores incorrectos",
+    style: "login.css",
+    title: "Login Alumnos",
+  });
 });
 
 router.get("/failureLoginProfesor", (req, res) => {
