@@ -14,6 +14,7 @@ const initializePassport = require("./config/passport.config.js");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
+const nodemailer = require("nodemailer");
 
 //PDF
 
@@ -25,6 +26,17 @@ const PORT = 8080;
 const httpSever = app.listen(PORT, () =>
   console.log(`Listeninig on PORT ${PORT}`)
 );
+
+// Contraseña de aplicación: nogs crmj xjra mgad
+const transport = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: "shadowfit.info@gmail.com",
+    pass: "nogs crmj xjra mgad",
+  },
+});
 
 const socketServer = new Server(httpSever);
 //Secreto
@@ -64,6 +76,16 @@ const connectMongoDB = async () => {
 };
 
 connectMongoDB();
+
+app.get("/mail", async (req, res) => {
+  let result = await transport.sendMail({
+    from: "Shadow Fit <shadowfit.info@gmail.com",
+    to: "pablo.cantarin86@gmail.com",
+    subject: "Correo prueba",
+    html: `<h1>HOLA PROBANDO</h1>`,
+  });
+  res.send({ correo: "Correo enviado" });
+});
 
 app.use("/api/users", usersRouter);
 app.use("/api/views", viewsRouter);
