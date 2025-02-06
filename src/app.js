@@ -34,7 +34,7 @@ const transport = nodemailer.createTransport({
   secure: true,
   auth: {
     user: "shadowfit.info@gmail.com",
-    pass: "nogs crmj xjra mgad",
+    pass: "",
   },
 });
 
